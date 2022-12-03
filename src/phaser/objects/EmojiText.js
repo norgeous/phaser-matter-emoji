@@ -25,7 +25,7 @@ class EmojiText {
 	}
 
   update() {
-    this.gameObject.angle = 0;
+    this.gameObject.setAngularVelocity(-this.gameObject.angle/1000);
   }
 
   destroy() {
