@@ -4,20 +4,20 @@ import EmojiText from '../objects/EmojiText';
 const STIFFNESS = 1;
 
 export default class EmojiMan {
-  constructor(scene, x,y, emojis) {
+  constructor(scene, x,y, {emojis}) {
     this.scene = scene;
     this.emojis = emojis;
 
-    this.hat   = new EmojiText(scene, x, y, { text:'🎩',size: 80,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 60, height: 40 } }});
-    this.head  = new EmojiText(scene, x, y, { text:'😂',size: 80,  matterBodyConfig: { mass:0 }});
-    this.body  = new EmojiText(scene, x, y, { text:'👕',size: 110, matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 60, height: 80 } }});
-    this.hips  = new EmojiText(scene, x, y, { text:'🩳',size: 80,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 80, height: 40 } }});
-    this.larm  = new EmojiText(scene, x, y, { text:'💪',size: 70,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 70, height: 40 } }});
-    this.rarm  = new EmojiText(scene, x, y, { text:'💪',size: 70,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 70, height: 40 } }});
-    this.lhand = new EmojiText(scene, x, y, { text:'👍',size: 40,  matterBodyConfig: { mass: 1 }});
-    this.rhand = new EmojiText(scene, x, y, { text:'👍',size: 40,  matterBodyConfig: { mass: 1 }});
-    this.lleg  = new EmojiText(scene, x, y, { text:'🦵',size: 100, matterBodyConfig: { mass: 10, shape: { type: 'rectangle', width: 70, height: 80 } } });
-    this.rleg  = new EmojiText(scene, x, y, { text:'🦵',size: 100, matterBodyConfig: { mass: 10, shape: { type: 'rectangle', width: 70, height: 80 } } });
+    this.hat   = new EmojiText(scene, x, y, { text: emojis.hat,  size: 80,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 60, height: 40 } }});
+    this.head  = new EmojiText(scene, x, y, { text: emojis.head, size: 80,  matterBodyConfig: { mass:0 }});
+    this.body  = new EmojiText(scene, x, y, { text: emojis.body, size: 110, matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 60, height: 80 } }});
+    this.hips  = new EmojiText(scene, x, y, { text: emojis.hips, size: 80,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 80, height: 40 } }});
+    this.larm  = new EmojiText(scene, x, y, { text: emojis.arm,  size: 70,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 70, height: 40 } }});
+    this.rarm  = new EmojiText(scene, x, y, { text: emojis.arm,  size: 70,  matterBodyConfig: { mass: 0, shape: { type: 'rectangle', width: 70, height: 40 } }});
+    this.lhand = new EmojiText(scene, x, y, { text: emojis.hand, size: 40,  matterBodyConfig: { mass: 1 }});
+    this.rhand = new EmojiText(scene, x, y, { text: emojis.hand, size: 40,  matterBodyConfig: { mass: 1 }});
+    this.lleg  = new EmojiText(scene, x, y, { text: emojis.leg,  size: 100, matterBodyConfig: { mass: 10, shape: { type: 'rectangle', width: 70, height: 80 } } });
+    this.rleg  = new EmojiText(scene, x, y, { text: emojis.leg,  size: 100, matterBodyConfig: { mass: 10, shape: { type: 'rectangle', width: 70, height: 80 } } });
     
     this.hat.text.setDepth(4);
     this.head.text.setDepth(3);

@@ -7,11 +7,39 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create () {
-    this.man1 = new EmojiMan(this, 400, 500, {emojis:{ head:'😂', }});
-    this.man2 = new EmojiMan(this, 800, 500, {emojis:{ head:'😂', }});
-    this.man3 = new EmojiMan(this, 1200, 500, {emojis:{ head:'😂', }});
-    
-    //🎩🧢👒
+    this.man1 = new EmojiMan(this, 400, 500, {
+      emojis: {
+        hat: '🎩',
+        head: '😂',
+        body: '👕',
+        hips: '🩳',
+        arm: '💪',
+        hand: '👍',
+        leg: '🦵',
+      },
+    });
+    this.man2 = new EmojiMan(this, 800, 500, {
+      emojis: {
+        hat: '👑',//'🧢',
+        head: '😲',
+        body: '👕',
+        hips: '🩳',
+        arm: '💪',
+        hand: '🖕',
+        leg: '🦵',
+      },
+    });
+    this.man3 = new EmojiMan(this, 1200, 500, {
+      emojis: {
+        hat: '👒',
+        head: '🤖',
+        body: '👚',
+        hips: '🩳',
+        arm: '🦾',
+        hand: '👈',
+        leg: '🦿',
+      },
+    });
     
     this.matter.world.setBounds();
     this.matter.add.mouseSpring();
