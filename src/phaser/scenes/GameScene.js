@@ -36,7 +36,7 @@ export default class GameScene extends Phaser.Scene {
         body: '👚',
         hips: '🩳',
         arm: '🦾',
-        hand: '👈',
+        hand: '🔪',
         leg: '🦿',
       },
     });

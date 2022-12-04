@@ -30,8 +30,10 @@ export default class EmojiMan {
     this.rleg.text.setFlipX(true);
     this.lhand.text.setFlipX(true);
     
+    this.constraints = {};
+
     // head+hat connection
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.headhat = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.hat.gameObject.body,
       bodyB: this.head.gameObject.body,
       pointA: { x: 0, y: 20 },
@@ -39,10 +41,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.headhat);
 
     // neck
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.neck = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.body.gameObject.body,
       bodyB: this.head.gameObject.body,
       pointA: { x: 0, y: -50 },
@@ -50,10 +52,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.neck);
 
     // left armpit
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.lap = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.body.gameObject.body,
       bodyB: this.larm.gameObject.body,
       pointA: { x: -40, y: -15 },
@@ -61,10 +63,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.lap);
 
     // right armpit
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.rap = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.body.gameObject.body,
       bodyB: this.rarm.gameObject.body,
       pointA: { x: 40, y: -15 },
@@ -72,10 +74,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.rap);
 
     // left wrist
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.lw = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.larm.gameObject.body,
       bodyB: this.lhand.gameObject.body,
       pointA: { x: 0, y: -35 },
@@ -83,10 +85,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.lw);
 
     // right wrist
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.rw = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.rarm.gameObject.body,
       bodyB: this.rhand.gameObject.body,
       pointA: { x: 0, y: -35 },
@@ -94,10 +96,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.rw);
 
     // waist
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.w = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.body.gameObject.body,
       bodyB: this.hips.gameObject.body,
       pointA: { x: 0, y: 40 },
@@ -105,10 +107,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.w);
 
     // left hip
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.lhip = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.hips.gameObject.body,
       bodyB: this.lleg.gameObject.body,
       pointA: { x: -30, y: 20 },
@@ -116,10 +118,10 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.lhip);
 
     // right hip
-    var constraint = Phaser.Physics.Matter.Matter.Constraint.create({
+    this.constraints.rhip = Phaser.Physics.Matter.Matter.Constraint.create({
       bodyA: this.hips.gameObject.body,
       bodyB: this.rleg.gameObject.body,
       pointA: { x: 30, y: 20 },
@@ -127,7 +129,15 @@ export default class EmojiMan {
       length: 0,
       stiffness: STIFFNESS,
     });
-    this.scene.matter.world.add(constraint);
+    this.scene.matter.world.add(this.constraints.rhip);
+
+    setInterval(() => {
+      const items = Object.keys(this.constraints);
+      const randomKey = items[Math.floor(Math.random() * items.length)];
+      if (!randomKey) return;
+      this.scene.matter.world.remove(this.constraints[randomKey]);
+      delete this.constraints[randomKey];
+    }, 30_000);
   }
 
   update() {
