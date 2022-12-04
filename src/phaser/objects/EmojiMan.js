@@ -141,6 +141,7 @@ export default class EmojiMan {
   }
 
   update() {
+    if (!this.constraints.neck) return;
     this.body.update();
     this.lhand.update();
     this.rhand.update();
